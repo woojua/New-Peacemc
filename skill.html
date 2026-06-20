@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaceMC Wiki - Skills</title>
+    <style>
+        body, html { margin: 0; padding: 0; background-color: #222; font-family: 'Segoe UI', sans-serif; color: #fff; }
+
+        /* 헤더 스타일 */
+        header { display: flex; align-items: center; padding: 20px; background-color: #333; position: sticky; top: 0; z-index: 10; }
+        .menu-icon { display: flex; flex-direction: column; cursor: pointer; gap: 4px; margin-right: 15px; }
+        .menu-icon div { width: 25px; height: 3px; background-color: #fff; }
+        .wiki-title { color: #fff; font-weight: bold; font-size: 1.2rem; }
+        .discord-btn { margin-left: auto; padding: 8px 16px; background-color: #7289da; color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; }
+
+        /* 사이드 메뉴 */
+        .side-menu { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background-color: #333; transition: 0.4s; z-index: 100; padding-top: 60px; }
+        .side-menu.active { left: 0; }
+        .menu-header { color: white; padding: 0 20px 20px; font-size: 1.5rem; font-weight: bold; }
+        .side-menu a { display: block; color: white; padding: 15px 20px; text-decoration: none; transition: 0.2s; }
+        .side-menu a:hover { background-color: #444; }
+
+        /* 본문 스타일 */
+        .content { max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        
+        /* 색상 클래스 */
+        .text-white { color: #ffffff; }
+        .text-offwhite { color: #cccccc; }
+        .text-lightgray { color: #aaaaaa; }
+        .text-gold { color: #ffd700; }
+        .text-lightgreen { color: #90ee90; }
+        .text-skyblue { color: #87ceeb; }
+        .text-red { color: #ff4d4d; }
+        
+        h2 { border-bottom: 2px solid #555; padding-bottom: 10px; margin-bottom: 20px; }
+        h3 { margin-top: 30px; margin-bottom: 10px; }
+        p { margin-bottom: 15px; margin-top: 0; }
+        
+        /* 회백색 구분선 */
+        .custom-hr { border: 0; height: 1px; background-color: #cccccc; margin-top: 30px; margin-bottom: 40px; }
+
+        /* 스킬 아이템 정렬용 */
+        .skill-item { margin-bottom: 30px; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: none; z-index: 50; }
+        .overlay.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+        <div class="wiki-title">평마서버 위키</div>
+        <a href="https://discord.gg/9DJJv5UPY8" class="discord-btn">Discord</a>
+    </header>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">Menu</div>
+        <a href="index.html">홈으로</a> 
+        <a href="guide.html">서버 기본 설명</a>
+        <a href="skill.html">스킬</a>
+        <a href="cmd.html">명령어</a>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="content">
+        <!-- 스킬 (흰색) -->
+        <h2 class="text-white">스킬</h2>
+
+        <!-- 스킬이란? (회백색) -->
+        <h3 class="text-offwhite">스킬이란?</h3>
+        
+        <!-- 설명문 (회백색) -->
+        <p class="text-offwhite">S,A,B,C,D급으로 나뉘어져 있으며 사용자에게 엄청난 이득을 주는 아이템입니다.</p>
+        
+        <!-- 사용법 (옅은 회색) -->
+        <p class="text-lightgray">사용법은 F키 입니다 ( 손 바꾸기 키 )</p>
+
+        <!-- 아래에는 스킬의 설명이 있습니다. (흰색) -->
+        <p class="text-white" style="margin-top: 40px;">아래에는 스킬의 설명이 있습니다.</p>
+
+        <!-- 구분선 (회백색) -->
+        <hr class="custom-hr">
+
+        <!-- S급 목록 (금색) -->
+        <h2 class="text-gold" style="border-bottom: none; margin-bottom: 25px;">S급 목록</h2>
+
+        <!-- 빛의 축복 -->
+        <div class="skill-item">
+            <h3 class="text-white">빛의 축복 ( S )</h3>
+            <p class="text-offwhite">
+                빛이 주변의 적에게 디버프 또는 주변의 아군에게 버프를 해줍니다.<br>
+                쿨타임 : 25초
+            </p>
+        </div>
+
+        <!-- 전면 폭격 요청 -->
+        <div class="skill-item">
+            <h3 class="text-white">전면 폭격 요청 ( S )</h3>
+            <p class="text-offwhite">
+                4번의 폭격을 요청합니다.<br>
+                데미지 : 100 * 4<br>
+                쿨타임 : 15초
+            </p>
+        </div>
+
+        <!-- 파멸의 검기 -->
+        <div class="skill-item">
+            <h3 class="text-white">파멸의 검기 ( S )</h3>
+            <p class="text-offwhite">
+                돌진해, 돌진한거리에 있는 모든 적을 썰어버립니다.<br>
+                데미지 : 2 * 100<br>
+                쿨타임 : 5초
+            </p>
+        </div>
+
+        <!-- S급 밑에 밑줄 치고 한 칸 띄우기 -->
+        <hr class="custom-hr">
+
+        <!-- A급 목록 (연두색) -->
+        <h2 class="text-lightgreen" style="border-bottom: none; margin-bottom: 25px;">A급 목록</h2>
+
+        <!-- 가호 -->
+        <div class="skill-item">
+            <h3 class="text-white">가호 ( A )</h3>
+            <p class="text-offwhite">
+                자신의 모든 체력을 회복하고 이로운 효과를 줍니다.<br>
+                치유량 : all<br>
+                이펙트 : 포화 , 힘<br>
+                적용대상 : 자신<br>
+                쿨타임 : 72초
+            </p>
+        </div>
+
+        <!-- 메테오 -->
+        <div class="skill-item">
+            <h3 class="text-white">메테오 ( A )</h3>
+            <p class="text-offwhite">
+                바라보는 방향에 메테오를 소환합니다.<br>
+                데미지 : 80<br>
+                쿨타임 : 17초
+            </p>
+        </div>
+
+        <!-- 암살 -->
+        <div class="skill-item">
+            <h3 class="text-white">암살 ( A )</h3>
+            <p class="text-offwhite">
+                주변의 적에게 다가가 데미지를 넣고 원래자리로 옵니다.<br>
+                데미지 : 25<br>
+                쿨타임 : 9초
+            </p>
+        </div>
+
+        <!-- 벽력일섬 -->
+        <div class="skill-item">
+            <h3 class="text-white">벽력일섬 ( A )</h3>
+            <p class="text-offwhite">
+                약간의 충전 뒤 돌진하며 돌진한 잔상을 남기고, 그 잔상에 있던 적은 데미지를 얻습니다.<br>
+                데미지 : 70<br>
+                쿨타임 : 16초
+            </p>
+        </div>
+
+        <!-- A급 밑에 밑줄 치고 한 칸 띄우기 -->
+        <hr class="custom-hr">
+
+        <!-- B급 목록 (하늘색) -->
+        <h2 class="text-skyblue" style="border-bottom: none; margin-bottom: 25px;">B급 목록</h2>
+
+        <!-- 자가수복 -->
+        <div class="skill-item">
+            <h3 class="text-white">자가수복 ( B )</h3>
+            <p class="text-offwhite">
+                5초동안 자기자신을 수복합니다.<br>
+                치유량 : 6*5<br>
+                쿨타임 : 47초
+            </p>
+        </div>
+
+        <!-- 자기장 방출 -->
+        <div class="skill-item">
+            <h3 class="text-white">자기장 방출 ( B )</h3>
+            <p class="text-offwhite">
+                4번동안 주변에 자기장을 방출합니다<br>
+                데미지 : 20 * 4<br>
+                쿨타임 : 36초
+            </p>
+        </div>
+
+        <!-- 일렉트릭 -->
+        <div class="skill-item">
+            <h3 class="text-white">일렉트릭 ( B )</h3>
+            <p class="text-offwhite">
+                주변으로 전파되는 전기를 발사합니다.<br>
+                데미지 : 10<br>
+                쿨타임 : 21초
+            </p>
+        </div>
+
+        <!-- 유도화살 -->
+        <div class="skill-item">
+            <h3 class="text-white">유도화살 ( B )</h3>
+            <p class="text-offwhite">
+                유도되는 화살을 발사합니다.<br>
+                데미지 : 20~2<br>
+                쿨타임 : 11초
+            </p>
+        </div>
+
+        <!-- B급 밑에 밑줄 치고 한 칸 띄우기 -->
+        <hr class="custom-hr">
+
+        <!-- C급 목록 (빨간색) -->
+        <h2 class="text-red" style="border-bottom: none; margin-bottom: 25px;">C급 목록</h2>
+
+        <!-- 수호 -->
+        <div class="skill-item">
+            <h3 class="text-white">수호 ( C )</h3>
+            <p class="text-offwhite">
+                주변에 버프를 주는 효과를 퍼트립니다.<br>
+                치유량 : +12<br>
+                이펙트 : 힘 4 , 재생 1<br>
+                적용대상 : 본인과 파티원<br>
+                쿨타임 : 33초
+            </p>
+        </div>
+
+        <!-- 독가스 -->
+        <div class="skill-item">
+            <h3 class="text-white">독가스 ( C )</h3>
+            <p class="text-offwhite">
+                주변에 독가스를 퍼트립니다.<br>
+                이펙트 : 독 5<br>
+                적용대상 : 파티원과 본인 제외 모두<br>
+                쿨타임 : 15초
+            </p>
+        </div>
+
+        <!-- C급 밑에 밑줄 치고 한 칸 띄우기 -->
+        <hr class="custom-hr">
+
+        <!-- D급 목록 (옅은 회색) -->
+        <h2 class="text-lightgray" style="border-bottom: none; margin-bottom: 25px;">D급 목록</h2>
+
+        <!-- 대포화살 -->
+        <div class="skill-item">
+            <h3 class="text-white">대포화살 ( D )</h3>
+            <p class="text-offwhite">
+                엄청난 스피드의 대포화살을 발사합니다.<br>
+                데미지 : 40<br>
+                쿨타임 : 12초
+            </p>
+        </div>
+
+        <!-- 자가치유 -->
+        <div class="skill-item">
+            <h3 class="text-white">자가치유 ( D )</h3>
+            <p class="text-offwhite">
+                자기자신을 치유합니다.<br>
+                치유량 : +8<br>
+                쿨타임 : 16초
+            </p>
+        </div>
+
+        <!-- 대쉬 -->
+        <div class="skill-item">
+            <h3 class="text-white">대쉬 ( D )</h3>
+            <p class="text-offwhite">
+                빠르게 앞으로 이동합니다.<br>
+                쿨타임 : 7초
+            </p>
+        </div>
+
+        <!-- 광폭 -->
+        <div class="skill-item">
+            <h3 class="text-white">광폭 ( D )</h3>
+            <p class="text-offwhite">
+                자신의 피를 깍아 힘 효과를 부여<br>
+                부여효과 : 힘 3<br>
+                쿨타임 : 22초
+            </p>
+        </div>
+
+        <!-- 불꽃폭탄 -->
+        <div class="skill-item">
+            <h3 class="text-white">불꽃폭탄 ( D )</h3>
+            <p class="text-offwhite">
+                불꽃폭탄을 발사합니다<br>
+                데미지 : 20<br>
+                쿨타임 : 22초
+            </p>
+        </div>
+
+        <!-- 연속베기 -->
+        <div class="skill-item">
+            <h3 class="text-white">연속베기 ( D )</h3>
+            <p class="text-offwhite">
+                2번의 검기를 휘두릅니다.<br>
+                데미지 : 15 * 2<br>
+                쿨타임 : 17초
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

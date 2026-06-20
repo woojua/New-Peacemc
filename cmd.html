@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaceMC Wiki - Commands</title>
+    <style>
+        body, html { margin: 0; padding: 0; background-color: #222; font-family: 'Segoe UI', sans-serif; color: #fff; }
+
+        /* 헤더 스타일 */
+        header { display: flex; align-items: center; padding: 20px; background-color: #333; position: sticky; top: 0; z-index: 10; }
+        .menu-icon { display: flex; flex-direction: column; cursor: pointer; gap: 4px; margin-right: 15px; }
+        .menu-icon div { width: 25px; height: 3px; background-color: #fff; }
+        .wiki-title { color: #fff; font-weight: bold; font-size: 1.2rem; }
+        .discord-btn { margin-left: auto; padding: 8px 16px; background-color: #7289da; color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; }
+
+        /* 사이드 메뉴 */
+        .side-menu { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background-color: #333; transition: 0.4s; z-index: 100; padding-top: 60px; }
+        .side-menu.active { left: 0; }
+        .menu-header { color: white; padding: 0 20px 20px; font-size: 1.5rem; font-weight: bold; }
+        .side-menu a { display: block; color: white; padding: 15px 20px; text-decoration: none; transition: 0.2s; }
+        .side-menu a:hover { background-color: #444; }
+
+        /* 본문 스타일 */
+        .content { max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        h2 { border-bottom: 2px solid #555; padding-bottom: 10px; margin-bottom: 30px; color: #fff; }
+        
+        /* 명령어 아이템 구조 */
+        .cmd-item { margin-bottom: 35px; background-color: #2b2b2b; padding: 20px; border-radius: 8px; border-left: 4px solid #7289da; }
+        .cmd-title { font-size: 1.3rem; font-weight: bold; color: #ffd700; margin: 0 0 10px 0; }
+        .cmd-desc { color: #ccc; margin: 0 0 15px 0; font-size: 0.95rem; }
+        
+        /* 서브 명령어 리스트 */
+        .sub-cmd-list { list-style: none; padding-left: 10px; margin: 0; }
+        .sub-cmd-list li { margin-bottom: 8px; color: #eee; font-size: 0.95rem; }
+        .sub-cmd-list li strong { color: #87ceeb; }
+        
+        /* 중첩 리스트 (Depth 2) */
+        .sub-cmd-list ul { list-style: none; padding-left: 20px; margin-top: 5px; }
+        .sub-cmd-list ul li { color: #bbb; font-size: 0.9rem; }
+        .sub-cmd-list ul li strong { color: #ff9999; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: none; z-index: 50; }
+        .overlay.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+        <div class="wiki-title">평마서버 위키</div>
+        <a href="https://discord.gg/9DJJv5UPY8" class="discord-btn">디스코드</a>
+    </header>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">Menu</div>
+        <a href="index.html">홈으로</a> 
+        <a href="guide.html">서버 기본 설명</a>
+        <a href="skill.html">스킬</a>
+        <a href="cmd.html">명령어</a>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="content">
+        <h2>명령어 가이드</h2>
+
+        <!-- /메뉴 -->
+        <div class="cmd-item">
+            <p class="cmd-title">/메뉴</p>
+            <ul class="sub-cmd-list">
+                <li>Shift + F 키 조합으로도 메뉴를 열 수 있습니다.</li>
+                <li>다양한 명령어를 클릭을 통해 편리하게 실행 가능합니다.</li>
+            </ul>
+        </div>
+
+        <!-- /파티 -->
+        <div class="cmd-item">
+            <p class="cmd-title">/파티</p>
+            <ul class="sub-cmd-list">
+                <li><strong>생성</strong> : 파티를 새롭게 생성합니다.</li>
+                <li><strong>초대 &lt;플레이어&gt;</strong> : 지정한 &lt;플레이어&gt;를 파티에 초대합니다.</li>
+                <li><strong>수락</strong> : 자신에게 도착한 파티 초대를 수락합니다.</li>
+                <li><strong>정보</strong> : 현재 파티에 소속된 유저 목록을 확인합니다.</li>
+                <li><strong>채팅</strong> : 파티 전용 채팅 모드를 ON/OFF 합니다.</li>
+                <li><strong>탈퇴</strong> : 현재 소속된 파티에서 나갑니다.</li>
+                <li><strong>해산</strong> : 파티를 완전히 없앱니다. (파티장 전용 기능)</li>
+            </ul>
+        </div>
+
+        <!-- /로비 -->
+        <div class="cmd-item">
+            <p class="cmd-title">/로비</p>
+            <ul class="sub-cmd-list">
+                <li>서버의 스폰 구역(로비)으로 즉시 이동합니다.</li>
+                <li>동일한 기능의 단축 명령어: <strong>/l</strong>, <strong>/lobby</strong>, <strong>/spawn</strong>, <strong>/넴주</strong></li>
+            </ul>
+        </div>
+
+        <!-- /칭호 -->
+        <div class="cmd-item">
+            <p class="cmd-title">/칭호</p>
+            <ul class="sub-cmd-list">
+                <li>획득한 칭호를 선택하여 캐릭터에 장착할 수 있는 전용 보관함을 엽니다.</li>
+            </ul>
+        </div>
+
+        <!-- /sethome, home -->
+        <div class="cmd-item">
+            <p class="cmd-title">/sethome, /home</p>
+            <ul class="sub-cmd-list">
+                <li><strong>sethome &lt;숫자&gt;</strong> : 현재 유저의 좌표 위치를 지정한 번호(&lt;숫자&gt;)의 홈으로 저장합니다. (이미 존재할 시 덮어쓰기)</li>
+                <li><strong>home &lt;숫자&gt;</strong> : 저장해 둔 해당 번호(&lt;숫자&gt;)의 홈 위치로 즉시 텔레포트합니다.</li>
+            </ul>
+        </div>
+
+        <!-- /강화 -->
+        <div class="cmd-item">
+            <p class="cmd-title">/강화</p>
+            <ul class="sub-cmd-list">
+                <li>장비 및 아이템 강화 전용 UI 창을 출력합니다.</li>
+                <li>이를 통해 무기, 장비, 방어구의 능력치를 올릴 수 있습니다. (자세한 내용은 강화 탭 참고)</li>
+            </ul>
+        </div>
+
+        <!-- /직업 -->
+        <div class="cmd-item">
+            <p class="cmd-title">/직업</p>
+            <ul class="sub-cmd-list">
+                <li>직업을 아직 선택하지 않은 상태라면 <strong>직업 선택 가이드 UI</strong>가 출력됩니다.</li>
+                <li>이미 전직을 완료한 상태라면 <strong>직업 상세 정보창</strong>이 오픈됩니다.</li>
+                <li>직업 창 내부에서는 현재 보유한 경험치, 수행할 임무, 다음 레벨 도달 시 획득할 스텟을 볼 수 있습니다.</li>
+            </ul>
+        </div>
+
+        <!-- /town -->
+        <div class="cmd-item">
+            <p class="cmd-title">/town <span style="font-size: 0.9rem; color: #ff4d4d; font-weight: normal;">(마을 서버에서만 작동)</span></p>
+            <ul class="sub-cmd-list">
+                <li><strong>create</strong> : 현재 플레이어가 서 있는 자리를 기점으로 새로운 마을을 건설합니다.</li>
+                <li><strong>claim</strong> : 현재 자신이 서 있는 구역을 마을의 소유 영토로 편입(점유)합니다.</li>
+                <li><strong>declaim</strong> : 현재 서 있는 위치에 확보된 마을 소유 영토의 점유를 해제하고 판매합니다.</li>
+                <li>
+                    <strong>set</strong>
+                    <ul>
+                        <li><strong>spawn</strong> : 현재 발을 딛고 있는 위치를 우리 마을의 공식 스폰 지점으로 지정합니다.</li>
+                        <li><strong>taxes &lt;숫자&gt;</strong> : 마을 구성원들에게 부과할 세금 비율을 &lt;숫자&gt;% 만큼 설정합니다.</li>
+                    </ul>
+                </li>
+                <li><strong>invite &lt;플레이어&gt;</strong> : 특정 플레이어를 우리 마을의 구성원으로 초대합니다.</li>
+                <li><strong>join</strong> : 나에게 온 마을 가입 초대를 받아들여 해당 마을의 일원이 됩니다.</li>
+                <li><strong>leave</strong> : 현재 소속되어 있는 마을에서 자진 탈퇴합니다.</li>
+                <li><strong>kick &lt;플레이어&gt;</strong> : 영지 내 부적절한 플레이어를 마을에서 강제 추방합니다.</li>
+                <li><strong>list</strong> : 생성되어 있는 전체 마을 목록이나 해당 마을의 요약 정보를 출력합니다.</li>
+                <li><strong>spawn</strong> : 소속된 우리 마을의 지정 스폰 지점으로 즉시 순간이동합니다.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
