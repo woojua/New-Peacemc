@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaceMC Wiki - Rules</title>
+    <style>
+        body, html { margin: 0; padding: 0; background-color: #222; font-family: 'Segoe UI', sans-serif; color: #fff; }
+
+        /* 헤더 스타일 */
+        header { display: flex; align-items: center; padding: 20px; background-color: #333; position: sticky; top: 0; z-index: 10; }
+        .menu-icon { display: flex; flex-direction: column; cursor: pointer; gap: 4px; margin-right: 15px; }
+        .menu-icon div { width: 25px; height: 3px; background-color: #fff; }
+        .wiki-title { color: #fff; font-weight: bold; font-size: 1.2rem; }
+        .discord-btn { margin-left: auto; padding: 8px 16px; background-color: #7289da; color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; }
+
+        /* 사이드 메뉴 */
+        .side-menu { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background-color: #333; transition: 0.4s; z-index: 100; padding-top: 60px; }
+        .side-menu.active { left: 0; }
+        .menu-header { color: white; padding: 0 20px 20px; font-size: 1.5rem; font-weight: bold; }
+        .side-menu a { display: block; color: white; padding: 15px 20px; text-decoration: none; transition: 0.2s; }
+        .side-menu a:hover { background-color: #444; }
+
+        /* 본문 스타일 */
+        .content { max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        
+        /* 색상 클래스 */
+        .text-white { color: #ffffff; }
+        .text-offwhite { color: #cccccc; }
+        .text-red { color: #ff5555; }
+        
+        h2 { border-bottom: 2px solid #555; padding-bottom: 10px; margin-bottom: 20px; margin-top: 40px; }
+        h3 { margin-top: 30px; margin-bottom: 15px; }
+        p { margin-bottom: 10px; margin-top: 0; }
+        
+        .rule-list { margin-bottom: 30px; }
+        .rule-list p { margin-bottom: 8px; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: none; z-index: 50; }
+        .overlay.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+        <div class="wiki-title">평마서버 위키</div>
+        <a href="https://discord.gg/9DJJv5UPY8" class="discord-btn">디스코드</a>
+    </header>
+
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">Menu</div>
+        <a href="index.html">홈으로</a> 
+        <a href="guide.html">서버 기본 설명</a>
+        <a href="skill.html">스킬</a>
+        <a href="cmd.html">명령어</a>
+        <a href="rule.html">규칙</a>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <div class="content">
+        
+        <h2 class="text-white">디스코드 서버 규칙</h2>
+        
+        <div class="rule-list text-white">
+            <p>1 서로에게 모욕감을 주거나 혐오감, 불쾌감 등을 유발시키지 마세요.</p>
+            <p>2 도배, 단타, 선동, 욕설, 비방, 섹드립 등의 발언을 하지 마세요.</p>
+            <p>3 정치적, 종교적이거나 특정 커뮤니티, 단체 등을 드러내는 발언을 하지 마세요.</p>
+            <p>4 타인의 개인정보를 유출하지 마세요.</p>
+            <p>5 허가받지 않은 홍보를 하지 마세요.</p>
+            <p>6 불법, 해킹 프로그램 등을 배포하지 마세요.</p>
+            <p>7 서버에 들낙(입장 후 바로 퇴장)을 하는 행위를 하지 마세요.</p>
+            <p>8 서로에게 사기를 치는 등의 행위를 하지 마세요.</p>
+            <p>9 서로를 존중해주세요.</p>
+            <p>10 서로를 이유없이 멘션하지 마세요.</p>
+            <p>11 디스코드 이용약관(ToS)에 반하는 행위를 하지 마세요.</p>
+        </div>
+
+        <h2 class="text-white">마인크래프트 서버 규칙</h2>
+        
+        <div class="rule-list text-offwhite">
+            <p>1 비인가 프로그램을 사용하지 마세요. ( 핵, 엑스레이 등 )</p>
+            <p>2 버그를 이용하지 마세요.</p>
+            <p>3 마을서버에서 일부러 다른 마을 옆에 마을을 짓지 마세요.</p>
+            <p>4 마을서버에서 약탈, 테러등 은 하지 마세요.</p>
+            <p>5 마을서버에서 공장을 짓지 마세요. ( 반자동, 자동 )</p>
+            <p>6 채팅에 이상한말, 친목 하지 마세요.</p>
+            <p>7 시세에 아예 맞지 않는 돈으로 물건을 팔지 마세요. ( 최소 0.1배 ~ 최대 10배 )</p>
+            <p>8 현금거래를 시도하지 마세요.</p>
+            <p>9 던전에서 고의로 시간을 끌지 마세요.</p>
+            <p>10 거래시 사기치지 마세요</p>
+            <p>11 부계정을 쓰지 마세요.</p>
+            <p>12 본인을 특정할수 없는 닉네임 변경 금지 ( 한글 닉 )</p>
+            <p>13 랭킹을 위한 아이템 대여 금지 ( 랭킹을 찍으려고 루비검 빌리기.. 등 )</p>
+            <p>14 사냥터에서 비매너 행위 ( 스틸, 길막, 사냥도 안하면서 자리차지 ) 금지</p>
+        </div>
+
+        <div class="rule-list text-red" style="margin-top: 40px;">
+            <p>위 규칙을 어길 경우 처벌을 받을 수 있음을 알립니다.</p>
+            <p>관리자의 재량에 따라 제시되지 않은 규칙에 대해 처벌을 받을 수 있음을 알립니다.</p>
+            <p>관리자도 한명의 유저입니다.</p>
+            <p>채팅금지 ~ 경고3회로 처벌 수위가 나누어져 있으며 저지른 행위에 따라 나누어서 지급됩니다.</p>
+            <p>경고 3회시 밴</p>
+        </div>
+
+        <h3 class="text-white">허용되는 모드 및 리소스팩</h3>
+        <p class="text-offwhite" style="margin-bottom: 30px;">
+            미니맵, 감마 모드(리소스팩), 바닐라 트윅스 리소스팩, 마우스 트윅스, 앉기 반동 해제 모드
+        </p>
+
+        <h3 class="text-white">비허용되는 모드 및 리소스팩</h3>
+        <p class="text-offwhite" style="margin-bottom: 30px;">
+            오토마우스, 엑스레이, 자동 설치 모드, 자동 파괴 모드, 리치 핵, 스피드 핵
+        </p>
+
+        <p class="text-offwhite" style="margin-top: 40px; font-style: italic;">
+            그 외의 모드는 질문 하시길 바랍니다.
+        </p>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
